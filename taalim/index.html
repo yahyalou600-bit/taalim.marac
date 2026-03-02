@@ -1,0 +1,2437 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة التعليم المغربية - من الأولى إعدادي إلى الثانية باكالوريا</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #4a6bff;
+            --secondary: #6b46c1;
+            --accent: #00d4aa;
+            --gold: #ffb74d;
+            --dark: #1a1a2e;
+            --light: #f8f9ff;
+            --white: #ffffff;
+            --success: #10b981;
+            --info: #3b82f6;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .moroccan-flag {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 3.5em;
+            animation: wave 2s infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            background: var(--light);
+            padding: 20px;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+            border-bottom: 4px solid var(--primary);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-tab {
+            padding: 14px 30px;
+            background: white;
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 700;
+            color: var(--dark);
+            font-size: 16px;
+        }
+
+        .nav-tab:hover {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(74, 107, 255, 0.3);
+        }
+
+        .nav-tab.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 4px 12px rgba(74, 107, 255, 0.4);
+        }
+
+        /* Main Content Area */
+        .main-content {
+            padding: 40px 30px;
+        }
+
+        /* Feature Cards */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+            padding: 30px;
+            border-radius: 18px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: var(--primary);
+            box-shadow: 0 15px 35px rgba(74, 107, 255, 0.25);
+        }
+
+        .feature-icon {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .feature-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .feature-desc {
+            font-size: 0.95em;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Level Selection */
+        .level-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .level-card {
+            background: white;
+            border: 3px solid var(--primary);
+            border-radius: 18px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .level-card:hover {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            transform: scale(1.08);
+            box-shadow: 0 10px 30px rgba(74, 107, 255, 0.3);
+        }
+
+        .level-card.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-color: var(--secondary);
+            transform: scale(1.05);
+        }
+
+        .level-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        /* Subject Grid */
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .subject-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+            border-radius: 20px;
+            padding: 30px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid #e0e0e0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+        }
+
+        .subject-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+        }
+
+        .subject-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border-color: var(--primary);
+        }
+
+        .subject-icon {
+            font-size: 4em;
+            margin-bottom: 18px;
+            display: block;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .subject-title {
+            font-size: 1.6em;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 12px;
+        }
+
+        .subject-lessons {
+            color: #666;
+            font-size: 1em;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .subject-progress {
+            background: #e0e0e0;
+            height: 10px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-top: 15px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .subject-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--success), var(--accent));
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 15px;
+        }
+
+        /* PDF Section */
+        .pdf-section {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border: 2px solid var(--accent);
+            box-shadow: 0 4px 15px rgba(0, 212, 170, 0.2);
+        }
+
+        .pdf-section h3 {
+            color: var(--dark);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.4em;
+        }
+
+        .pdf-download-btn, .lesson-download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, var(--success), var(--accent));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .pdf-download-btn:hover, .lesson-download-btn:hover {
+            background: linear-gradient(135deg, #0da271, #00c29d);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        }
+
+        .lesson-download-btn {
+            background: linear-gradient(135deg, var(--warning), #fbbf24);
+            color: var(--dark);
+            padding: 8px 16px;
+            font-size: 13px;
+            margin-right: 10px;
+        }
+
+        .lesson-download-btn:hover {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+
+        .pdf-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .pdf-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .pdf-item:hover {
+            border-color: var(--success);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+        }
+
+        .pdf-icon {
+            font-size: 2.5em;
+            color: var(--primary);
+        }
+
+        .pdf-info {
+            flex: 1;
+        }
+
+        .pdf-title {
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 4px;
+        }
+
+        .pdf-link {
+            font-size: 0.85em;
+            color: #777;
+            word-break: break-all;
+        }
+
+        /* Search Bar */
+        .search-container {
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 18px 60px 18px 25px;
+            border: 3px solid var(--primary);
+            border-radius: 18px;
+            font-size: 17px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .search-box:focus {
+            outline: none;
+            box-shadow: 0 6px 25px rgba(74, 107, 255, 0.3);
+            border-color: var(--secondary);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.6em;
+            color: var(--primary);
+        }
+
+        /* Stats Dashboard */
+        .stats-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px;
+            border-radius: 18px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(74, 107, 255, 0.3);
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(74, 107, 255, 0.4);
+        }
+
+        .stat-number {
+            font-size: 3em;
+            font-weight: 800;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .stat-label {
+            font-size: 1em;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 26, 46, 0.95);
+            z-index: 1000;
+            overflow-y: auto;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #ffffff, #f8f9ff);
+            padding: 45px;
+            border-radius: 25px;
+            max-width: 1000px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.5);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 2.2em;
+            cursor: pointer;
+            color: #666;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #f0f0f0;
+            transition: all 0.3s;
+        }
+
+        .modal-close:hover {
+            background: var(--primary);
+            color: white;
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        /* Lesson Item */
+        .lesson-item {
+            background: white;
+            padding: 25px;
+            margin-bottom: 18px;
+            border-radius: 14px;
+            border-right: 6px solid var(--primary);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+        }
+
+        .lesson-item:hover {
+            transform: translateX(-12px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            border-right-color: var(--secondary);
+        }
+
+        .lesson-number {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            flex-shrink: 0;
+            font-size: 1.2em;
+            box-shadow: 0 4px 12px rgba(74, 107, 255, 0.3);
+        }
+
+        .lesson-content {
+            flex: 1;
+        }
+
+        .lesson-title {
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 6px;
+            font-size: 1.1em;
+        }
+
+        .lesson-meta {
+            font-size: 0.9em;
+            color: #777;
+        }
+
+        .lesson-status {
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            font-weight: 700;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .lesson-status.completed {
+            background: var(--success);
+            color: white;
+        }
+
+        .lesson-status.not-started {
+            background: #e0e0e0;
+            color: #666;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 14px 35px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 17px;
+            font-weight: 700;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(74, 107, 255, 0.3);
+        }
+
+        /* Content Section */
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.4s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Section Headers */
+        .section-header {
+            color: var(--primary);
+            margin: 40px 0 25px;
+            font-size: 2em;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-header::before {
+            content: '';
+            width: 6px;
+            height: 40px;
+            background: linear-gradient(180deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+        }
+
+        /* Bookmarks Feature */
+        .bookmark-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .bookmark-btn.bookmarked {
+            background: var(--success);
+            color: white;
+        }
+
+        .bookmark-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+        }
+
+        .theme-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s;
+        }
+
+        .theme-btn:hover {
+            transform: rotate(180deg) scale(1.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .nav-tabs {
+                flex-direction: column;
+            }
+
+            .subjects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-dashboard {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .theme-toggle {
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+
+        /* Notes Feature */
+        .notes-section {
+            background: #f0f9ff;
+            border: 2px solid var(--accent);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .notes-textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: inherit;
+            resize: vertical;
+        }
+
+        .notes-textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        
+        /* اضافات جديدة - قسم الفروض والذكاء الاصطناعي */
+        .exam-section {
+            background: linear-gradient(135deg, #fff5f0, #ffe8e6);
+            border: 3px solid #ff6b6b;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.2);
+        }
+        
+        .exam-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .exam-icon {
+            font-size: 4em;
+        }
+        
+        .exam-title {
+            font-size: 2.2em;
+            font-weight: 800;
+            color: #d63031;
+        }
+        
+        .exam-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 2px solid #ffe0b2;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .exam-card:hover {
+            border-color: #ff6b6b;
+            box-shadow: 0 6px 18px rgba(255, 107, 107, 0.25);
+        }
+        
+        .exam-info h4 {
+            font-size: 1.4em;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+        
+        .exam-link-display {
+            background: #f1f1f1;
+            padding: 10px 20px;
+            border-radius: 30px;
+            color: #0b5e7c;
+            font-size: 0.95em;
+            word-break: break-all;
+            max-width: 500px;
+        }
+        
+        .btn-exam {
+            background: linear-gradient(135deg, #ff6b6b, #ee5253);
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .btn-exam:hover {
+            background: #ff4757;
+            transform: scale(1.05);
+        }
+        
+        .exam-preview {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 10px;
+            word-break: break-all;
+        }
+        
+        .ai-section {
+            background: linear-gradient(145deg, #f1f4ff, #ede9fe);
+            border: 3px solid #8b5cf6;
+            border-radius: 30px;
+            padding: 30px;
+            margin: 50px 0 30px;
+            box-shadow: 0 15px 35px rgba(139, 92, 246, 0.25);
+        }
+        
+        .ai-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .ai-avatar {
+            background: #8b5cf6;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            color: white;
+            box-shadow: 0 6px 15px rgba(139, 92, 246, 0.5);
+        }
+        
+        .ai-title {
+            font-size: 2em;
+            font-weight: 800;
+            color: #6d28d9;
+        }
+        
+        .ai-sub {
+            color: #5b21b6;
+            font-size: 1.1em;
+        }
+        
+        .chat-container {
+            background: white;
+            border-radius: 24px;
+            padding: 25px;
+            min-height: 280px;
+            max-height: 400px;
+            overflow-y: auto;
+            border: 2px solid #c4b5fd;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .chat-message {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .ai-message {
+            background: #f5f3ff;
+            padding: 18px 25px;
+            border-radius: 20px 20px 20px 5px;
+            max-width: 80%;
+            border: 2px solid #c7d2fe;
+            color: #1e1e2e;
+            line-height: 1.7;
+            font-size: 1.05em;
+        }
+        
+        .user-message {
+            background: var(--primary);
+            color: white;
+            padding: 18px 25px;
+            border-radius: 20px 20px 5px 20px;
+            max-width: 80%;
+            align-self: flex-end;
+            border: 2px solid var(--primary);
+            line-height: 1.7;
+        }
+        
+        .chat-input-area {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .chat-input {
+            flex: 1;
+            padding: 18px 25px;
+            border: 3px solid #e0e7ff;
+            border-radius: 60px;
+            font-size: 1.05em;
+            transition: 0.3s;
+        }
+        
+        .chat-input:focus {
+            border-color: #8b5cf6;
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(139,92,246,0.2);
+        }
+        
+        .chat-send {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            border: none;
+            border-radius: 60px;
+            padding: 0 35px;
+            color: white;
+            font-weight: 800;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .chat-send:hover {
+            background: #6d28d9;
+            transform: scale(1.03);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="moroccan-flag">🇲🇦</div>
+            <h1>🎓 منصة التعليم المغربية</h1>
+            <p class="subtitle">من الأولى إعدادي إلى الثانية باكالوريا - جميع المواد والدروس</p>
+        </header>
+
+        <!-- Navigation -->
+        <div class="nav-tabs">
+            <div class="nav-tab active" onclick="showSection('home')">🏠 الرئيسية</div>
+            <div class="nav-tab" onclick="showSection('subjects')">📚 المواد الدراسية</div>
+            <div class="nav-tab" onclick="showSection('pdfs')">📥 تحميل الدروس PDF</div>
+            <div class="nav-tab" onclick="showSection('exams')">📋 الفروض والامتحانات</div>
+            <div class="nav-tab" onclick="showSection('ai-assistant')">🤖 المساعد الذكي</div>
+            <div class="nav-tab" onclick="showSection('bookmarks')">⭐ المفضلة</div>
+            <div class="nav-tab" onclick="showSection('notes')">📝 ملاحظاتي</div>
+            <div class="nav-tab" onclick="showSection('progress')">📊 تقدمي</div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Home Section -->
+            <div id="home" class="content-section active">
+                <!-- Stats Dashboard -->
+                <div class="stats-dashboard">
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalLessons">288</div>
+                        <div class="stat-label">إجمالي الدروس</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="completedLessons">0</div>
+                        <div class="stat-label">دروس مكتملة</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="bookmarksCount">0</div>
+                        <div class="stat-label">دروس محفوظة</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalPoints">0</div>
+                        <div class="stat-label">نقاط التقدم</div>
+                    </div>
+                </div>
+
+                <!-- Features -->
+                <h2 class="section-header">✨ مميزات المنصة</h2>
+                <div class="features-grid">
+                    <div class="feature-card" onclick="showSection('subjects')">
+                        <div class="feature-icon">📚</div>
+                        <div class="feature-title">دروس شاملة</div>
+                        <div class="feature-desc">جميع دروس المواد من الإعدادي للباكالوريا</div>
+                    </div>
+                    <div class="feature-card" onclick="showSection('pdfs')">
+                        <div class="feature-icon">📥</div>
+                        <div class="feature-title">تحميل PDF</div>
+                        <div class="feature-desc">حمّل ملخصات جميع الدروس بصيغة PDF</div>
+                    </div>
+                    <div class="feature-card" onclick="showSection('exams')">
+                        <div class="feature-icon">📋</div>
+                        <div class="feature-title">الفروض والامتحانات</div>
+                        <div class="feature-desc">فروض محروسة مع التصحيح - روابط جاهزة</div>
+                    </div>
+                    <div class="feature-card" onclick="showSection('ai-assistant')">
+                        <div class="feature-icon">🤖</div>
+                        <div class="feature-title">المساعد الذكي</div>
+                        <div class="feature-desc">اسأل أي سؤال دراسي، أجب عن التمارين، حل صعوباتك</div>
+                    </div>
+                    <div class="feature-card" onclick="showSection('bookmarks')">
+                        <div class="feature-icon">⭐</div>
+                        <div class="feature-title">المفضلة</div>
+                        <div class="feature-desc">احفظ دروسك المفضلة للوصول السريع</div>
+                    </div>
+                    <div class="feature-card" onclick="showSection('notes')">
+                        <div class="feature-icon">📝</div>
+                        <div class="feature-title">ملاحظاتي</div>
+                        <div class="feature-desc">اكتب ملاحظاتك الخاصة لكل درس</div>
+                    </div>
+                    <div class="feature-card" onclick="showSection('progress')">
+                        <div class="feature-icon">📈</div>
+                        <div class="feature-title">تتبع التقدم</div>
+                        <div class="feature-desc">راقب تطورك الدراسي يومياً</div>
+                    </div>
+                </div>
+
+                <!-- Search -->
+                <div class="search-container">
+                    <input type="text" class="search-box" id="searchBox" placeholder="🔍 ابحث عن درس، موضوع، أو مادة..." oninput="searchContent()">
+                    <span class="search-icon">🔍</span>
+                </div>
+
+                <!-- Level Selection -->
+                <h2 class="section-header">اختر مستواك الدراسي</h2>
+                <div class="level-selector" id="levelSelector"></div>
+            </div>
+
+            <!-- Subjects Section -->
+            <div id="subjects" class="content-section">
+                <h2 class="section-header">المواد الدراسية</h2>
+                <div id="subjectsContainer"></div>
+            </div>
+
+            <!-- PDFs Section -->
+            <div id="pdfs" class="content-section">
+                <h2 class="section-header">📥 تحميل الدروس بصيغة PDF</h2>
+                <div id="pdfContainer"></div>
+            </div>
+            
+            <!-- Exams Section -->
+            <div id="exams" class="content-section">
+                <div class="exam-section">
+                    <div class="exam-header">
+                        <div class="exam-icon">📋📎</div>
+                        <div class="exam-title">الفروض والامتحانات</div>
+                    </div>
+                    <p style="font-size:1.2em; margin-bottom:25px; color:#2d3436;">روابط الفروض الجاهزة - يمكنك تعديلها مباشرة في الكود المصدري</p>
+                    
+                    <div id="examLevelSelector" style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 30px;"></div>
+                    
+                    <div id="examContentContainer"></div>
+                </div>
+            </div>
+            
+            <!-- AI Assistant Section -->
+            <div id="ai-assistant" class="content-section">
+                <div class="ai-section">
+                    <div class="ai-header">
+                        <div class="ai-avatar">🤖</div>
+                        <div>
+                            <div class="ai-title">المرشد التربوي الذكي</div>
+                            <div class="ai-sub">مدعوم بتقنية متقدمة – اسأل عن أي درس أو تمرين أو منهجية</div>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-container" id="chatWindow">
+                        <div class="chat-message">
+                            <div style="background: #8b5cf6; width:45px; height:45px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-size:1.7em; flex-shrink:0;">🤖</div>
+                            <div class="ai-message">
+                                مرحباً! أنا مساعدك الذكي للتعليم المغربي. يمكنني:<br>
+                                • شرح أي درس أو فكرة<br>
+                                • مساعدتك في حل تمارين (رياضيات، فيزياء، ...)<br>
+                                • اقتراح منهجية المراجعة<br>
+                                • تلخيص دروس<br>
+                                فقط اكتب سؤالك بالعربية أو الفرنسية أو الإنجليزية.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-input-area">
+                        <input type="text" class="chat-input" id="aiChatInput" placeholder="اكتب سؤالك الدراسي هنا ..." onkeypress="if(event.key==='Enter') sendAIMessage()">
+                        <button class="chat-send" onclick="sendAIMessage()">
+                            <span style="font-size:1.2em;">📤</span> إرسال
+                        </button>
+                        <button class="chat-send" style="background: var(--warning);" onclick="clearChat()" title="مسح المحادثة">
+                            <span style="font-size:1.2em;">🗑️</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bookmarks Section -->
+            <div id="bookmarks" class="content-section">
+                <h2 class="section-header">⭐ دروسي المفضلة</h2>
+                <div id="bookmarksContainer"></div>
+            </div>
+
+            <!-- Notes Section -->
+            <div id="notes" class="content-section">
+                <h2 class="section-header">📝 ملاحظاتي الدراسية</h2>
+                <div id="notesContainer"></div>
+            </div>
+
+            <!-- Progress Section -->
+            <div id="progress" class="content-section">
+                <h2 class="section-header">📊 تقدمك الدراسي</h2>
+                <div id="progressCharts"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Lesson Content -->
+    <div class="modal" id="lessonModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">×</span>
+            <div id="lessonContent"></div>
+        </div>
+    </div>
+
+    <!-- Theme Toggle Button -->
+    <div class="theme-toggle">
+        <button class="theme-btn" onclick="toggleTheme()" title="تبديل الوضع الليلي">
+            🌙
+        </button>
+    </div>
+
+    <script>
+        // ============================================
+        // روابط PDF لجميع الدروس - ضع روابطك هنا
+        // ============================================
+        // الصيغة: 'المستوى-المادة-رقم_الدرس': 'رابط_PDF_الخاص_بك'
+        // رقم الدرس يبدأ من 0 (الدرس الأول) إلى 11 (الدرس الثاني عشر)
+        // ============================================
+
+        const HARDCODED_PDF_LINKS = {
+            
+            // ═══════════════════════════════════════════════════════════════
+            // الأولى إعدادي (اعدادي-1)
+            // ═══════════════════════════════════════════════════════════════
+            
+            // --- الرياضيات (math) ---
+            'اعدادي-1-math-0': 'رابط_الدرس_1',
+            'اعدادي-1-math-1': 'رابط_الدرس_2',
+            'اعدادي-1-math-2': 'رابط_الدرس_3',
+            'اعدادي-1-math-3': 'رابط_الدرس_4',
+            'اعدادي-1-math-4': 'رابط_الدرس_5',
+            'اعدادي-1-math-5': 'رابط_الدرس_6',
+            'اعدادي-1-math-6': 'رابط_الدرس_7',
+            'اعدادي-1-math-7': 'رابط_الدرس_8',
+            'اعدادي-1-math-8': 'رابط_الدرس_9',
+            'اعدادي-1-math-9': 'رابط_الدرس_10',
+            'اعدادي-1-math-10': 'رابط_الدرس_11',
+            'اعدادي-1-math-11': 'رابط_الدرس_12',
+            
+            // --- الفيزياء والكيمياء (physics) ---
+            'اعدادي-1-physics-0': 'رابط_الدرس_1',
+            'اعدادي-1-physics-1': 'رابط_الدرس_2',
+            'اعدادي-1-physics-2': 'رابط_الدرس_3',
+            'اعدادي-1-physics-3': 'رابط_الدرس_4',
+            'اعدادي-1-physics-4': 'رابط_الدرس_5',
+            'اعدادي-1-physics-5': 'رابط_الدرس_6',
+            'اعدادي-1-physics-6': 'رابط_الدرس_7',
+            'اعدادي-1-physics-7': 'رابط_الدرس_8',
+            'اعدادي-1-physics-8': 'رابط_الدرس_9',
+            'اعدادي-1-physics-9': 'رابط_الدرس_10',
+            'اعدادي-1-physics-10': 'رابط_الدرس_11',
+            'اعدادي-1-physics-11': 'رابط_الدرس_12',
+            
+            // --- اللغة العربية (arabic) ---
+            'اعدادي-1-arabic-0': 'رابط_الدرس_1',
+            'اعدادي-1-arabic-1': 'رابط_الدرس_2',
+            'اعدادي-1-arabic-2': 'رابط_الدرس_3',
+            'اعدادي-1-arabic-3': 'رابط_الدرس_4',
+            'اعدادي-1-arabic-4': 'رابط_الدرس_5',
+            'اعدادي-1-arabic-5': 'رابط_الدرس_6',
+            'اعدادي-1-arabic-6': 'رابط_الدرس_7',
+            'اعدادي-1-arabic-7': 'رابط_الدرس_8',
+            'اعدادي-1-arabic-8': 'رابط_الدرس_9',
+            'اعدادي-1-arabic-9': 'رابط_الدرس_10',
+            'اعدادي-1-arabic-10': 'رابط_الدرس_11',
+            'اعدادي-1-arabic-11': 'رابط_الدرس_12',
+            
+            // --- الفرنسية (french) ---
+            'اعدادي-1-french-0': 'رابط_الدرس_1',
+            'اعدادي-1-french-1': 'رابط_الدرس_2',
+            'اعدادي-1-french-2': 'رابط_الدرس_3',
+            'اعدادي-1-french-3': 'رابط_الدرس_4',
+            'اعدادي-1-french-4': 'رابط_الدرس_5',
+            'اعدادي-1-french-5': 'رابط_الدرس_6',
+            'اعدادي-1-french-6': 'رابط_الدرس_7',
+            'اعدادي-1-french-7': 'رابط_الدرس_8',
+            'اعدادي-1-french-8': 'رابط_الدرس_9',
+            'اعدادي-1-french-9': 'رابط_الدرس_10',
+            'اعدادي-1-french-10': 'رابط_الدرس_11',
+            'اعدادي-1-french-11': 'رابط_الدرس_12',
+            
+            // --- الإنجليزية (english) ---
+            'اعدادي-1-english-0': 'رابط_الدرس_1',
+            'اعدادي-1-english-1': 'رابط_الدرس_2',
+            'اعدادي-1-english-2': 'رابط_الدرس_3',
+            'اعدادي-1-english-3': 'رابط_الدرس_4',
+            'اعدادي-1-english-4': 'رابط_الدرس_5',
+            'اعدادي-1-english-5': 'رابط_الدرس_6',
+            'اعدادي-1-english-6': 'رابط_الدرس_7',
+            'اعدادي-1-english-7': 'رابط_الدرس_8',
+            'اعدادي-1-english-8': 'رابط_الدرس_9',
+            'اعدادي-1-english-9': 'رابط_الدرس_10',
+            'اعدادي-1-english-10': 'رابط_الدرس_11',
+            'اعدادي-1-english-11': 'رابط_الدرس_12',
+            
+            // --- التربية الإسلامية (islamic) ---
+            'اعدادي-1-islamic-0': 'رابط_الدرس_1',
+            'اعدادي-1-islamic-1': 'رابط_الدرس_2',
+            'اعدادي-1-islamic-2': 'رابط_الدرس_3',
+            'اعدادي-1-islamic-3': 'رابط_الدرس_4',
+            'اعدادي-1-islamic-4': 'رابط_الدرس_5',
+            'اعدادي-1-islamic-5': 'رابط_الدرس_6',
+            'اعدادي-1-islamic-6': 'رابط_الدرس_7',
+            'اعدادي-1-islamic-7': 'رابط_الدرس_8',
+            'اعدادي-1-islamic-8': 'رابط_الدرس_9',
+            'اعدادي-1-islamic-9': 'رابط_الدرس_10',
+            'اعدادي-1-islamic-10': 'رابط_الدرس_11',
+            'اعدادي-1-islamic-11': 'رابط_الدرس_12',
+            
+            // --- الاجتماعيات (social) ---
+            'اعدادي-1-social-0': 'رابط_الدرس_1',
+            'اعدادي-1-social-1': 'رابط_الدرس_2',
+            'اعدادي-1-social-2': 'رابط_الدرس_3',
+            'اعدادي-1-social-3': 'رابط_الدرس_4',
+            'اعدادي-1-social-4': 'رابط_الدرس_5',
+            'اعدادي-1-social-5': 'رابط_الدرس_6',
+            'اعدادي-1-social-6': 'رابط_الدرس_7',
+            'اعدادي-1-social-7': 'رابط_الدرس_8',
+            'اعدادي-1-social-8': 'رابط_الدرس_9',
+            'اعدادي-1-social-9': 'رابط_الدرس_10',
+            'اعدادي-1-social-10': 'رابط_الدرس_11',
+            'اعدادي-1-social-11': 'رابط_الدرس_12',
+            
+            
+            // ═══════════════════════════════════════════════════════════════
+            // الثانية إعدادي (اعدادي-2)
+            // ═══════════════════════════════════════════════════════════════
+            
+            // --- الرياضيات (math) ---
+            'اعدادي-2-math-0': 'رابط_الدرس_1',
+            'اعدادي-2-math-1': 'رابط_الدرس_2',
+            'اعدادي-2-math-2': 'رابط_الدرس_3',
+            'اعدادي-2-math-3': 'رابط_الدرس_4',
+            'اعدادي-2-math-4': 'رابط_الدرس_5',
+            'اعدادي-2-math-5': 'رابط_الدرس_6',
+            'اعدادي-2-math-6': 'رابط_الدرس_7',
+            'اعدادي-2-math-7': 'رابط_الدرس_8',
+            'اعدادي-2-math-8': 'رابط_الدرس_9',
+            'اعدادي-2-math-9': 'رابط_الدرس_10',
+            'اعدادي-2-math-10': 'رابط_الدرس_11',
+            'اعدادي-2-math-11': 'رابط_الدرس_12',
+            
+            // --- الفيزياء والكيمياء (physics) ---
+            'اعدادي-2-physics-0': 'رابط_الدرس_1',
+            'اعدادي-2-physics-1': 'رابط_الدرس_2',
+            'اعدادي-2-physics-2': 'رابط_الدرس_3',
+            'اعدادي-2-physics-3': 'رابط_الدرس_4',
+            'اعدادي-2-physics-4': 'رابط_الدرس_5',
+            'اعدادي-2-physics-5': 'رابط_الدرس_6',
+            'اعدادي-2-physics-6': 'رابط_الدرس_7',
+            'اعدادي-2-physics-7': 'رابط_الدرس_8',
+            'اعدادي-2-physics-8': 'رابط_الدرس_9',
+            'اعدادي-2-physics-9': 'رابط_الدرس_10',
+            'اعدادي-2-physics-10': 'رابط_الدرس_11',
+            'اعدادي-2-physics-11': 'رابط_الدرس_12',
+            
+            // --- علوم الحياة والأرض (svt) ---
+            'اعدادي-2-svt-0': 'رابط_الدرس_1',
+            'اعدادي-2-svt-1': 'رابط_الدرس_2',
+            'اعدادي-2-svt-2': 'رابط_الدرس_3',
+            'اعدادي-2-svt-3': 'رابط_الدرس_4',
+            'اعدادي-2-svt-4': 'رابط_الدرس_5',
+            'اعدادي-2-svt-5': 'رابط_الدرس_6',
+            'اعدادي-2-svt-6': 'رابط_الدرس_7',
+            'اعدادي-2-svt-7': 'رابط_الدرس_8',
+            'اعدادي-2-svt-8': 'رابط_الدرس_9',
+            'اعدادي-2-svt-9': 'رابط_الدرس_10',
+            'اعدادي-2-svt-10': 'رابط_الدرس_11',
+            'اعدادي-2-svt-11': 'رابط_الدرس_12',
+            
+            // --- اللغة العربية (arabic) ---
+            'اعدادي-2-arabic-0': 'رابط_الدرس_1',
+            'اعدادي-2-arabic-1': 'رابط_الدرس_2',
+            'اعدادي-2-arabic-2': 'رابط_الدرس_3',
+            'اعدادي-2-arabic-3': 'رابط_الدرس_4',
+            'اعدادي-2-arabic-4': 'رابط_الدرس_5',
+            'اعدادي-2-arabic-5': 'رابط_الدرس_6',
+            'اعدادي-2-arabic-6': 'رابط_الدرس_7',
+            'اعدادي-2-arabic-7': 'رابط_الدرس_8',
+            'اعدادي-2-arabic-8': 'رابط_الدرس_9',
+            'اعدادي-2-arabic-9': 'رابط_الدرس_10',
+            'اعدادي-2-arabic-10': 'رابط_الدرس_11',
+            'اعدادي-2-arabic-11': 'رابط_الدرس_12',
+            
+            // --- الفرنسية (french) ---
+            'اعدادي-2-french-0': 'رابط_الدرس_1',
+            'اعدادي-2-french-1': 'رابط_الدرس_2',
+            'اعدادي-2-french-2': 'رابط_الدرس_3',
+            'اعدادي-2-french-3': 'رابط_الدرس_4',
+            'اعدادي-2-french-4': 'رابط_الدرس_5',
+            'اعدادي-2-french-5': 'رابط_الدرس_6',
+            'اعدادي-2-french-6': 'رابط_الدرس_7',
+            'اعدادي-2-french-7': 'رابط_الدرس_8',
+            'اعدادي-2-french-8': 'رابط_الدرس_9',
+            'اعدادي-2-french-9': 'رابط_الدرس_10',
+            'اعدادي-2-french-10': 'رابط_الدرس_11',
+            'اعدادي-2-french-11': 'رابط_الدرس_12',
+            
+            // --- التربية الإسلامية (islamic) ---
+            'اعدادي-2-islamic-0': 'رابط_الدرس_1',
+            'اعدادي-2-islamic-1': 'رابط_الدرس_2',
+            'اعدادي-2-islamic-2': 'رابط_الدرس_3',
+            'اعدادي-2-islamic-3': 'رابط_الدرس_4',
+            'اعدادي-2-islamic-4': 'رابط_الدرس_5',
+            'اعدادي-2-islamic-5': 'رابط_الدرس_6',
+            'اعدادي-2-islamic-6': 'رابط_الدرس_7',
+            'اعدادي-2-islamic-7': 'رابط_الدرس_8',
+            'اعدادي-2-islamic-8': 'رابط_الدرس_9',
+            'اعدادي-2-islamic-9': 'رابط_الدرس_10',
+            'اعدادي-2-islamic-10': 'رابط_الدرس_11',
+            'اعدادي-2-islamic-11': 'رابط_الدرس_12',
+            
+            
+            // ═══════════════════════════════════════════════════════════════
+            // الثالثة إعدادي (اعدادي-3)
+            // ═══════════════════════════════════════════════════════════════
+            
+            // --- الرياضيات (math) ---
+            'اعدادي-3-math-0': './pdfs/seance-3-racines-carrees-1.pdf',
+            'اعدادي-3-math-1': 'رابط_الدرس_2',
+            'اعدادي-3-math-2': 'رابط_الدرس_3',
+            'اعدادي-3-math-3': 'رابط_الدرس_4',
+            'اعدادي-3-math-4': 'رابط_الدرس_5',
+            'اعدادي-3-math-5': 'رابط_الدرس_6',
+            'اعدادي-3-math-6': 'رابط_الدرس_7',
+            'اعدادي-3-math-7': 'رابط_الدرس_8',
+            'اعدادي-3-math-8': 'رابط_الدرس_9',
+            'اعدادي-3-math-9': 'رابط_الدرس_10',
+            'اعدادي-3-math-10': 'رابط_الدرس_11',
+            'اعدادي-3-math-11': 'رابط_الدرس_12',
+            
+            // --- الفيزياء والكيمياء (physics) ---
+            'اعدادي-3-physics-0': 'رابط_الدرس_1',
+            'اعدادي-3-physics-1': 'رابط_الدرس_2',
+            'اعدادي-3-physics-2': 'رابط_الدرس_3',
+            'اعدادي-3-physics-3': 'رابط_الدرس_4',
+            'اعدادي-3-physics-4': 'رابط_الدرس_5',
+            'اعدادي-3-physics-5': 'رابط_الدرس_6',
+            'اعدادي-3-physics-6': 'رابط_الدرس_7',
+            'اعدادي-3-physics-7': 'رابط_الدرس_8',
+            'اعدادي-3-physics-8': 'رابط_الدرس_9',
+            'اعدادي-3-physics-9': 'رابط_الدرس_10',
+            'اعدادي-3-physics-10': 'رابط_الدرس_11',
+            'اعدادي-3-physics-11': 'رابط_الدرس_12',
+            
+            // --- علوم الحياة والأرض (svt) ---
+            'اعدادي-3-svt-0': 'رابط_الدرس_1',
+            'اعدادي-3-svt-1': 'رابط_الدرس_2',
+            'اعدادي-3-svt-2': 'رابط_الدرس_3',
+            'اعدادي-3-svt-3': 'رابط_الدرس_4',
+            'اعدادي-3-svt-4': 'رابط_الدرس_5',
+            'اعدادي-3-svt-5': 'رابط_الدرس_6',
+            'اعدادي-3-svt-6': 'رابط_الدرس_7',
+            'اعدادي-3-svt-7': 'رابط_الدرس_8',
+            'اعدادي-3-svt-8': 'رابط_الدرس_9',
+            'اعدادي-3-svt-9': 'رابط_الدرس_10',
+            'اعدادي-3-svt-10': 'رابط_الدرس_11',
+            'اعدادي-3-svt-11': 'رابط_الدرس_12',
+            
+            // --- اللغة العربية (arabic) ---
+            'اعدادي-3-arabic-0': 'رابط_الدرس_1',
+            'اعدادي-3-arabic-1': 'رابط_الدرس_2',
+            'اعدادي-3-arabic-2': 'رابط_الدرس_3',
+            'اعدادي-3-arabic-3': 'رابط_الدرس_4',
+            'اعدادي-3-arabic-4': 'رابط_الدرس_5',
+            'اعدادي-3-arabic-5': 'رابط_الدرس_6',
+            'اعدادي-3-arabic-6': 'رابط_الدرس_7',
+            'اعدادي-3-arabic-7': 'رابط_الدرس_8',
+            'اعدادي-3-arabic-8': 'رابط_الدرس_9',
+            'اعدادي-3-arabic-9': 'رابط_الدرس_10',
+            'اعدادي-3-arabic-10': 'رابط_الدرس_11',
+            'اعدادي-3-arabic-11': 'رابط_الدرس_12',
+            
+            // --- التربية الإسلامية (islamic) ---
+            'اعدادي-3-islamic-0': 'رابط_الدرس_1',
+            'اعدادي-3-islamic-1': 'رابط_الدرس_2',
+            'اعدادي-3-islamic-2': 'رابط_الدرس_3',
+            'اعدادي-3-islamic-3': 'رابط_الدرس_4',
+            'اعدادي-3-islamic-4': 'رابط_الدرس_5',
+            'اعدادي-3-islamic-5': 'رابط_الدرس_6',
+            'اعدادي-3-islamic-6': 'رابط_الدرس_7',
+            'اعدادي-3-islamic-7': 'رابط_الدرس_8',
+            'اعدادي-3-islamic-8': 'رابط_الدرس_9',
+            'اعدادي-3-islamic-9': 'رابط_الدرس_10',
+            'اعدادي-3-islamic-10': 'رابط_الدرس_11',
+            'اعدادي-3-islamic-11': 'رابط_الدرس_12',
+            
+            // --- الاجتماعيات (social) ---
+            'اعدادي-3-social-0': '',
+            'اعدادي-3-social-1': 'رابط_الدرس_2',
+            'اعدادي-3-social-2': 'رابط_الدرس_3',
+            'اعدادي-3-social-3': 'رابط_الدرس_4',
+            'اعدادي-3-social-4': 'رابط_الدرس_5',
+            'اعدادي-3-social-5': 'رابط_الدرس_6',
+            'اعدادي-3-social-6': 'رابط_الدرس_7',
+            'اعدادي-3-social-7': 'رابط_الدرس_8',
+            'اعدادي-3-social-8': 'رابط_الدرس_9',
+            'اعدادي-3-social-9': 'رابط_الدرس_10',
+            'اعدادي-3-social-10': 'رابط_الدرس_11',
+            'اعدادي-3-social-11': 'رابط_الدرس_12',
+            
+            
+            // ═══════════════════════════════════════════════════════════════
+            // الأولى باكالوريا (باك-1)
+            // ═══════════════════════════════════════════════════════════════
+            
+            // --- الرياضيات (math) ---
+            'باك-1-math-0': 'رابط_الدرس_1',
+            'باك-1-math-1': 'رابط_الدرس_2',
+            'باك-1-math-2': 'رابط_الدرس_3',
+            'باك-1-math-3': 'رابط_الدرس_4',
+            'باك-1-math-4': 'رابط_الدرس_5',
+            'باك-1-math-5': 'رابط_الدرس_6',
+            'باك-1-math-6': 'رابط_الدرس_7',
+            'باك-1-math-7': 'رابط_الدرس_8',
+            'باك-1-math-8': 'رابط_الدرس_9',
+            'باك-1-math-9': 'رابط_الدرس_10',
+            'باك-1-math-10': 'رابط_الدرس_11',
+            'باك-1-math-11': 'رابط_الدرس_12',
+            
+            // --- الفيزياء (physics) ---
+            'باك-1-physics-0': 'رابط_الدرس_1',
+            'باك-1-physics-1': 'رابط_الدرس_2',
+            'باك-1-physics-2': 'رابط_الدرس_3',
+            'باك-1-physics-3': 'رابط_الدرس_4',
+            'باك-1-physics-4': 'رابط_الدرس_5',
+            'باك-1-physics-5': 'رابط_الدرس_6',
+            'باك-1-physics-6': 'رابط_الدرس_7',
+            'باك-1-physics-7': 'رابط_الدرس_8',
+            'باك-1-physics-8': 'رابط_الدرس_9',
+            'باك-1-physics-9': 'رابط_الدرس_10',
+            'باك-1-physics-10': 'رابط_الدرس_11',
+            'باك-1-physics-11': 'رابط_الدرس_12',
+            
+            // --- الكيمياء (chemistry) ---
+            'باك-1-chemistry-0': 'رابط_الدرس_1',
+            'باك-1-chemistry-1': 'رابط_الدرس_2',
+            'باك-1-chemistry-2': 'رابط_الدرس_3',
+            'باك-1-chemistry-3': 'رابط_الدرس_4',
+            'باك-1-chemistry-4': 'رابط_الدرس_5',
+            'باك-1-chemistry-5': 'رابط_الدرس_6',
+            'باك-1-chemistry-6': 'رابط_الدرس_7',
+            'باك-1-chemistry-7': 'رابط_الدرس_8',
+            'باك-1-chemistry-8': 'رابط_الدرس_9',
+            'باك-1-chemistry-9': 'رابط_الدرس_10',
+            'باك-1-chemistry-10': 'رابط_الدرس_11',
+            'باك-1-chemistry-11': 'رابط_الدرس_12',
+            
+            // --- علوم الحياة والأرض (svt) ---
+            'باك-1-svt-0': 'رابط_الدرس_1',
+            'باك-1-svt-1': 'رابط_الدرس_2',
+            'باك-1-svt-2': 'رابط_الدرس_3',
+            'باك-1-svt-3': 'رابط_الدرس_4',
+            'باك-1-svt-4': 'رابط_الدرس_5',
+            'باك-1-svt-5': 'رابط_الدرس_6',
+            'باك-1-svt-6': 'رابط_الدرس_7',
+            'باك-1-svt-7': 'رابط_الدرس_8',
+            'باك-1-svt-8': 'رابط_الدرس_9',
+            'باك-1-svt-9': 'رابط_الدرس_10',
+            'باك-1-svt-10': 'رابط_الدرس_11',
+            'باك-1-svt-11': 'رابط_الدرس_12',
+            
+            // --- الفلسفة (philosophy) ---
+            'باك-1-philosophy-0': 'رابط_الدرس_1',
+            'باك-1-philosophy-1': 'رابط_الدرس_2',
+            'باك-1-philosophy-2': 'رابط_الدرس_3',
+            'باك-1-philosophy-3': 'رابط_الدرس_4',
+            'باك-1-philosophy-4': 'رابط_الدرس_5',
+            'باك-1-philosophy-5': 'رابط_الدرس_6',
+            'باك-1-philosophy-6': 'رابط_الدرس_7',
+            'باك-1-philosophy-7': 'رابط_الدرس_8',
+            'باك-1-philosophy-8': 'رابط_الدرس_9',
+            'باك-1-philosophy-9': 'رابط_الدرس_10',
+            'باك-1-philosophy-10': 'رابط_الدرس_11',
+            'باك-1-philosophy-11': 'رابط_الدرس_12',
+            
+            // --- اللغة العربية (arabic) ---
+            'باك-1-arabic-0': 'رابط_الدرس_1',
+            'باك-1-arabic-1': 'رابط_الدرس_2',
+            'باك-1-arabic-2': 'رابط_الدرس_3',
+            'باك-1-arabic-3': 'رابط_الدرس_4',
+            'باك-1-arabic-4': 'رابط_الدرس_5',
+            'باك-1-arabic-5': 'رابط_الدرس_6',
+            'باك-1-arabic-6': 'رابط_الدرس_7',
+            'باك-1-arabic-7': 'رابط_الدرس_8',
+            'باك-1-arabic-8': 'رابط_الدرس_9',
+            'باك-1-arabic-9': 'رابط_الدرس_10',
+            'باك-1-arabic-10': 'رابط_الدرس_11',
+            'باك-1-arabic-11': 'رابط_الدرس_12',
+            
+            // --- الفرنسية (french) ---
+            'باك-1-french-0': 'رابط_الدرس_1',
+            'باك-1-french-1': 'رابط_الدرس_2',
+            'باك-1-french-2': 'رابط_الدرس_3',
+            'باك-1-french-3': 'رابط_الدرس_4',
+            'باك-1-french-4': 'رابط_الدرس_5',
+            'باك-1-french-5': 'رابط_الدرس_6',
+            'باك-1-french-6': 'رابط_الدرس_7',
+            'باك-1-french-7': 'رابط_الدرس_8',
+            'باك-1-french-8': 'رابط_الدرس_9',
+            'باك-1-french-9': 'رابط_الدرس_10',
+            'باك-1-french-10': 'رابط_الدرس_11',
+            'باك-1-french-11': 'رابط_الدرس_12',
+            
+            // --- الإنجليزية (english) ---
+            'باك-1-english-0': 'رابط_الدرس_1',
+            'باك-1-english-1': 'رابط_الدرس_2',
+            'باك-1-english-2': 'رابط_الدرس_3',
+            'باك-1-english-3': 'رابط_الدرس_4',
+            'باك-1-english-4': 'رابط_الدرس_5',
+            'باك-1-english-5': 'رابط_الدرس_6',
+            'باك-1-english-6': 'رابط_الدرس_7',
+            'باك-1-english-7': 'رابط_الدرس_8',
+            'باك-1-english-8': 'رابط_الدرس_9',
+            'باك-1-english-9': 'رابط_الدرس_10',
+            'باك-1-english-10': 'رابط_الدرس_11',
+            'باك-1-english-11': 'رابط_الدرس_12',
+            
+            // --- التربية الإسلامية (islamic) ---
+            'باك-1-islamic-0': 'رابط_الدرس_1',
+            'باك-1-islamic-1': 'رابط_الدرس_2',
+            'باك-1-islamic-2': 'رابط_الدرس_3',
+            'باك-1-islamic-3': 'رابط_الدرس_4',
+            'باك-1-islamic-4': 'رابط_الدرس_5',
+            'باك-1-islamic-5': 'رابط_الدرس_6',
+            'باك-1-islamic-6': 'رابط_الدرس_7',
+            'باك-1-islamic-7': 'رابط_الدرس_8',
+            'باك-1-islamic-8': 'رابط_الدرس_9',
+            'باك-1-islamic-9': 'رابط_الدرس_10',
+            'باك-1-islamic-10': 'رابط_الدرس_11',
+            'باك-1-islamic-11': 'رابط_الدرس_12',
+            
+            
+            // ═══════════════════════════════════════════════════════════════
+            // الثانية باكالوريا (باك-2)
+            // ═══════════════════════════════════════════════════════════════
+            
+            // --- الرياضيات (math) ---
+            'باك-2-math-0': 'رابط_الدرس_1',
+            'باك-2-math-1': 'رابط_الدرس_2',
+            'باك-2-math-2': 'رابط_الدرس_3',
+            'باك-2-math-3': 'رابط_الدرس_4',
+            'باك-2-math-4': 'رابط_الدرس_5',
+            'باك-2-math-5': 'رابط_الدرس_6',
+            'باك-2-math-6': 'رابط_الدرس_7',
+            'باك-2-math-7': 'رابط_الدرس_8',
+            'باك-2-math-8': 'رابط_الدرس_9',
+            'باك-2-math-9': 'رابط_الدرس_10',
+            'باك-2-math-10': 'رابط_الدرس_11',
+            'باك-2-math-11': 'رابط_الدرس_12',
+            
+            // --- الفيزياء (physics) ---
+            'باك-2-physics-0': 'رابط_الدرس_1',
+            'باك-2-physics-1': 'رابط_الدرس_2',
+            'باك-2-physics-2': 'رابط_الدرس_3',
+            'باك-2-physics-3': 'رابط_الدرس_4',
+            'باك-2-physics-4': 'رابط_الدرس_5',
+            'باك-2-physics-5': 'رابط_الدرس_6',
+            'باك-2-physics-6': 'رابط_الدرس_7',
+            'باك-2-physics-7': 'رابط_الدرس_8',
+            'باك-2-physics-8': 'رابط_الدرس_9',
+            'باك-2-physics-9': 'رابط_الدرس_10',
+            'باك-2-physics-10': 'رابط_الدرس_11',
+            'باك-2-physics-11': 'رابط_الدرس_12',
+            
+            // --- الكيمياء (chemistry) ---
+            'باك-2-chemistry-0': 'رابط_الدرس_1',
+            'باك-2-chemistry-1': 'رابط_الدرس_2',
+            'باك-2-chemistry-2': 'رابط_الدرس_3',
+            'باك-2-chemistry-3': 'رابط_الدرس_4',
+            'باك-2-chemistry-4': 'رابط_الدرس_5',
+            'باك-2-chemistry-5': 'رابط_الدرس_6',
+            'باك-2-chemistry-6': 'رابط_الدرس_7',
+            'باك-2-chemistry-7': 'رابط_الدرس_8',
+            'باك-2-chemistry-8': 'رابط_الدرس_9',
+            'باك-2-chemistry-9': 'رابط_الدرس_10',
+            'باك-2-chemistry-10': 'رابط_الدرس_11',
+            'باك-2-chemistry-11': 'رابط_الدرس_12',
+            
+            // --- علوم الحياة والأرض (svt) ---
+            'باك-2-svt-0': 'رابط_الدرس_1',
+            'باك-2-svt-1': 'رابط_الدرس_2',
+            'باك-2-svt-2': 'رابط_الدرس_3',
+            'باك-2-svt-3': 'رابط_الدرس_4',
+            'باك-2-svt-4': 'رابط_الدرس_5',
+            'باك-2-svt-5': 'رابط_الدرس_6',
+            'باك-2-svt-6': 'رابط_الدرس_7',
+            'باك-2-svt-7': 'رابط_الدرس_8',
+            'باك-2-svt-8': 'رابط_الدرس_9',
+            'باك-2-svt-9': 'رابط_الدرس_10',
+            'باك-2-svt-10': 'رابط_الدرس_11',
+            'باك-2-svt-11': 'رابط_الدرس_12',
+            
+            // --- الفلسفة (philosophy) ---
+            'باك-2-philosophy-0': 'رابط_الدرس_1',
+            'باك-2-philosophy-1': 'رابط_الدرس_2',
+            'باك-2-philosophy-2': 'رابط_الدرس_3',
+            'باك-2-philosophy-3': 'رابط_الدرس_4',
+            'باك-2-philosophy-4': 'رابط_الدرس_5',
+            'باك-2-philosophy-5': 'رابط_الدرس_6',
+            'باك-2-philosophy-6': 'رابط_الدرس_7',
+            'باك-2-philosophy-7': 'رابط_الدرس_8',
+            'باك-2-philosophy-8': 'رابط_الدرس_9',
+            'باك-2-philosophy-9': 'رابط_الدرس_10',
+            'باك-2-philosophy-10': 'رابط_الدرس_11',
+            'باك-2-philosophy-11': 'رابط_الدرس_12',
+            
+            // --- اللغة العربية (arabic) ---
+            'باك-2-arabic-0': 'رابط_الدرس_1',
+            'باك-2-arabic-1': 'رابط_الدرس_2',
+            'باك-2-arabic-2': 'رابط_الدرس_3',
+            'باك-2-arabic-3': 'رابط_الدرس_4',
+            'باك-2-arabic-4': 'رابط_الدرس_5',
+            'باك-2-arabic-5': 'رابط_الدرس_6',
+            'باك-2-arabic-6': 'رابط_الدرس_7',
+            'باك-2-arabic-7': 'رابط_الدرس_8',
+            'باك-2-arabic-8': 'رابط_الدرس_9',
+            'باك-2-arabic-9': 'رابط_الدرس_10',
+            'باك-2-arabic-10': 'رابط_الدرس_11',
+            'باك-2-arabic-11': 'رابط_الدرس_12',
+            
+            // --- الفرنسية (french) ---
+            'باك-2-french-0': 'رابط_الدرس_1',
+            'باك-2-french-1': 'رابط_الدرس_2',
+            'باك-2-french-2': 'رابط_الدرس_3',
+            'باك-2-french-3': 'رابط_الدرس_4',
+            'باك-2-french-4': 'رابط_الدرس_5',
+            'باك-2-french-5': 'رابط_الدرس_6',
+            'باك-2-french-6': 'رابط_الدرس_7',
+            'باك-2-french-7': 'رابط_الدرس_8',
+            'باك-2-french-8': 'رابط_الدرس_9',
+            'باك-2-french-9': 'رابط_الدرس_10',
+            'باك-2-french-10': 'رابط_الدرس_11',
+            'باك-2-french-11': 'رابط_الدرس_12',
+            
+            // --- الإنجليزية (english) ---
+            'باك-2-english-0': 'رابط_الدرس_1',
+            'باك-2-english-1': 'رابط_الدرس_2',
+            'باك-2-english-2': 'رابط_الدرس_3',
+            'باك-2-english-3': 'رابط_الدرس_4',
+            'باك-2-english-4': 'رابط_الدرس_5',
+            'باك-2-english-5': 'رابط_الدرس_6',
+            'باك-2-english-6': 'رابط_الدرس_7',
+            'باك-2-english-7': 'رابط_الدرس_8',
+            'باك-2-english-8': 'رابط_الدرس_9',
+            'باك-2-english-9': 'رابط_الدرس_10',
+            'باك-2-english-10': 'رابط_الدرس_11',
+            'باك-2-english-11': 'رابط_الدرس_12',
+            
+            // --- التربية الإسلامية (islamic) ---
+            'باك-2-islamic-0': 'رابط_الدرس_1',
+            'باك-2-islamic-1': 'رابط_الدرس_2',
+            'باك-2-islamic-2': 'رابط_الدرس_3',
+            'باك-2-islamic-3': 'رابط_الدرس_4',
+            'باك-2-islamic-4': 'رابط_الدرس_5',
+            'باك-2-islamic-5': 'رابط_الدرس_6',
+            'باك-2-islamic-6': 'رابط_الدرس_7',
+            'باك-2-islamic-7': 'رابط_الدرس_8',
+            'باك-2-islamic-8': 'رابط_الدرس_9',
+            'باك-2-islamic-9': 'رابط_الدرس_10',
+            'باك-2-islamic-10': 'رابط_الدرس_11',
+            'باك-2-islamic-11': 'رابط_الدرس_12',
+        };
+
+        // ============================================
+        // روابط الفروض والامتحانات - ضع روابطك هنا
+        // ============================================
+        // الصيغة: 'المستوى-المادة': 'رابط_الفرض_الخاص_بك'
+        // ============================================
+        
+        const HARDCODED_EXAM_LINKS = {
+            // الأولى إعدادي
+            'اعدادي-1-math': 'https://drive.google.com/file/d/1-math-exam-1ac/view',
+            'اعدادي-1-physics': 'https://drive.google.com/file/d/1-physics-exam-1ac/view',
+            'اعدادي-1-arabic': 'https://drive.google.com/file/d/1-arabic-exam-1ac/view',
+            'اعدادي-1-french': 'https://drive.google.com/file/d/1-french-exam-1ac/view',
+            'اعدادي-1-english': 'https://drive.google.com/file/d/1-english-exam-1ac/view',
+            'اعدادي-1-islamic': 'https://drive.google.com/file/d/1-islamic-exam-1ac/view',
+            'اعدادي-1-social': 'https://drive.google.com/file/d/1-social-exam-1ac/view',
+            
+            // الثانية إعدادي
+            'اعدادي-2-math': 'https://drive.google.com/file/d/2-math-exam-2ac/view',
+            'اعدادي-2-physics': 'https://drive.google.com/file/d/2-physics-exam-2ac/view',
+            'اعدادي-2-svt': 'https://drive.google.com/file/d/2-svt-exam-2ac/view',
+            'اعدادي-2-arabic': 'https://drive.google.com/file/d/2-arabic-exam-2ac/view',
+            'اعدادي-2-french': 'https://drive.google.com/file/d/2-french-exam-2ac/view',
+            'اعدادي-2-islamic': 'https://drive.google.com/file/d/2-islamic-exam-2ac/view',
+            
+            // الثالثة إعدادي
+            'اعدادي-3-math': 'https://drive.google.com/file/d/3-math-exam-3ac/view',
+            'اعدادي-3-physics': 'https://drive.google.com/file/d/3-physics-exam-3ac/view',
+            'اعدادي-3-svt': 'https://drive.google.com/file/d/3-svt-exam-3ac/view',
+            'اعدادي-3-arabic': 'https://drive.google.com/file/d/3-arabic-exam-3ac/view',
+            'اعدادي-3-islamic': 'https://drive.google.com/file/d/3-islamic-exam-3ac/view',
+            'اعدادي-3-social': 'https://drive.google.com/file/d/3-social-exam-3ac/view',
+            
+            // الأولى باكالوريا
+            'باك-1-math': 'https://drive.google.com/file/d/1bac-math-exam/view',
+            'باك-1-physics': 'https://drive.google.com/file/d/1bac-physics-exam/view',
+            'باك-1-chemistry': 'https://drive.google.com/file/d/1bac-chemistry-exam/view',
+            'باك-1-svt': 'https://drive.google.com/file/d/1bac-svt-exam/view',
+            'باك-1-philosophy': 'https://drive.google.com/file/d/1bac-philosophy-exam/view',
+            'باك-1-arabic': 'https://drive.google.com/file/d/1bac-arabic-exam/view',
+            'باك-1-french': 'https://drive.google.com/file/d/1bac-french-exam/view',
+            'باك-1-english': 'https://drive.google.com/file/d/1bac-english-exam/view',
+            'باك-1-islamic': 'https://drive.google.com/file/d/1bac-islamic-exam/view',
+            
+            // الثانية باكالوريا
+            'باك-2-math': 'https://drive.google.com/file/d/2bac-math-exam/view',
+            'باك-2-physics': 'https://drive.google.com/file/d/2bac-physics-exam/view',
+            'باك-2-chemistry': 'https://drive.google.com/file/d/2bac-chemistry-exam/view',
+            'باك-2-svt': 'https://drive.google.com/file/d/2bac-svt-exam/view',
+            'باك-2-philosophy': 'https://drive.google.com/file/d/2bac-philosophy-exam/view',
+            'باك-2-arabic': 'https://drive.google.com/file/d/2bac-arabic-exam/view',
+            'باك-2-french': 'https://drive.google.com/file/d/2bac-french-exam/view',
+            'باك-2-english': 'https://drive.google.com/file/d/2bac-english-exam/view',
+            'باك-2-islamic': 'https://drive.google.com/file/d/2bac-islamic-exam/view',
+        };
+
+        // Educational Data Structure (مع الحفاظ على الكود الأصلي بالكامل)
+        const educationalData = {
+            'اعدادي-1': {
+                name: 'الأولى إعدادي',
+                totalLessons: 84,
+                subjects: {
+                    math: { name: 'الرياضيات', icon: '📐', lessons: ['الأعداد الصحيحة الطبيعية والعشرية', 'العمليات الحسابية الأربع', 'المستقيمات والزوايا', 'المثلثات', 'المساحات والمحيطات', 'الأعداد الكسرية', 'التناسبية', 'المعادلات البسيطة', 'الإحصاء - قراءة الجداول', 'الهندسة الفضائية', 'الجمع والطرح للأعداد العشرية', 'الضرب والقسمة للأعداد العشرية'] },
+                    physics: { name: 'الفيزياء والكيمياء', icon: '🔬', lessons: ['الماء من حولنا', 'حالات المادة', 'الذوبان في الماء', 'الكتلة والحجم', 'الكهرباء - الدارة الكهربائية', 'التيار الكهربائي', 'الضوء والألوان', 'الحرارة ودرجة الحرارة', 'المخاليط والأجسام الصافية', 'قياس الكتل والحجوم', 'التغيرات الفيزيائية والكيميائية', 'العناصر والمركبات'] },
+                    arabic: { name: 'اللغة العربية', icon: '📖', lessons: ['النص القرائي - القراءة المعبرة', 'الفعل الصحيح والمعتل', 'الأسماء الخمسة', 'المبتدأ والخبر', 'كان وأخواتها', 'إن وأخواتها', 'النعت والحال', 'التعبير الكتابي', 'الإنشاء', 'المطالعة الموجهة', 'التحليل الأدبي', 'الشعر العمودي'] },
+                    french: { name: 'الفرنسية', icon: '🇫🇷', lessons: ['Les verbes du 1er groupe', 'Les articles définis et indéfinis', 'Les pronoms personnels', 'Le présent de l\'indicatif', 'La négation', 'Les adjectifs possessifs', 'La description physique', 'La famille', 'Les loisirs', 'L\'école', 'Les jours et les mois', 'Les nombres'] },
+                    english: { name: 'الإنجليزية', icon: '🇬🇧', lessons: ['Present Simple', 'Present Continuous', 'Personal Pronouns', 'To Be / To Have', 'Articles (a, an, the)', 'Plural Forms', 'Possessive Adjectives', 'Daily Routines', 'Family Members', 'School Subjects', 'Days and Months', 'Numbers 1-100'] },
+                    islamic: { name: 'التربية الإسلامية', icon: '🕌', lessons: ['القرآن الكريم - الحفظ والتجويد', 'الطهارة', 'الصلاة', 'أركان الإيمان', 'السيرة النبوية', 'الأخلاق الإسلامية', 'العبادات', 'القيم الإسلامية', 'التلاوة والحفظ', 'الآداب الإسلامية', 'أركان الإسلام', 'الصوم'] },
+                    social: { name: 'الاجتماعيات', icon: '🌍', lessons: ['التاريخ - الحضارات القديمة', 'الجغرافيا - خطوط الطول والعرض', 'التربية على المواطنة', 'المغرب القديم', 'البيئة والمجال', 'السكان', 'الخريطة الطبوغرافية', 'الموارد الطبيعية', 'المؤسسات الديمقراطية', 'حقوق الإنسان', 'الحضارة الفرعونية', 'الحضارة الرومانية'] }
+                }
+            },
+            'اعدادي-2': {
+                name: 'الثانية إعدادي',
+                totalLessons: 72,
+                subjects: {
+                    math: { name: 'الرياضيات', icon: '📐', lessons: ['الأعداد الجذرية', 'القوى', 'المتطابقات الهامة', 'المعادلات والمتراجحات', 'الإحصاء', 'الحساب الحرفي', 'نظرية طاليس', 'الترتيب والمقارنة', 'الأشعة والانسحاب', 'المثلثات المتشابهة', 'المتجهات', 'التماثل المركزي'] },
+                    physics: { name: 'الفيزياء والكيمياء', icon: '🔬', lessons: ['التفاعلات الكيميائية', 'الذرات والجزيئات', 'التحليل الكهربائي للماء', 'التيار الكهربائي المستمر', 'قانون أوم', 'الضوء - الانعكاس', 'العدسات والانكسار', 'الحركة والسكون', 'قوة الجاذبية والوزن', 'الطاقة الكهربائية', 'الكيمياء العضوية', 'الأحماض والقواعد'] },
+                    svt: { name: 'علوم الحياة والأرض', icon: '🌱', lessons: ['التغذية عند النبات', 'التنفس عند الإنسان', 'الجهاز الدوري', 'الإخراج', 'الجهاز الهضمي', 'الصخور', 'التربة', 'الزلازل', 'البراكين', 'التوازن الطبيعي', 'الجهاز التنفسي', 'الجهاز العصبي'] },
+                    arabic: { name: 'اللغة العربية', icon: '📖', lessons: ['النصوص الأدبية', 'القواعد النحوية المتقدمة', 'البلاغة', 'العروض', 'الإنشاء الأدبي', 'المطالعة الحرة', 'التحليل النصي', 'الأدب العربي', 'الشعر الحديث', 'النثر الفني', 'النحو: التوابع', 'النحو: الأساليب النحوية'] },
+                    french: { name: 'الفرنسية', icon: '🇫🇷', lessons: ['Les temps du passé', 'Le futur simple', 'Le conditionnel', 'Les pronoms relatifs', 'La voix passive', 'Les subordonnées', 'Le discours rapporté', 'Les connecteurs logiques', 'La rédaction', 'La compréhension écrite', 'Le subjonctif', 'L\'impératif'] },
+                    islamic: { name: 'التربية الإسلامية', icon: '🕌', lessons: ['العقيدة الإسلامية', 'أخلاقيات التعامل', 'الآداب الشرعية', 'سيرة الرسول ﷺ', 'الأخلاق في الإسلام', 'العبادات والمعاملات', 'الأحكام الفقهية', 'القيم الإنسانية', 'الحديث النبوي', 'السيرة النبوية المتقدمة', 'الفقه العبادات', 'الفقه المعاملات'] }
+                }
+            },
+            'اعدادي-3': {
+                name: 'الثالثة إعدادي',
+                totalLessons: 72,
+                subjects: {
+                    math: { name: 'الرياضيات', icon: '📐', lessons: ['الجذور المربعة', 'نظرية فيتاغورس', 'المعادلات من الدرجة الثانية', 'الدوال الخطية والتآلفية', 'الهندسة الفضائية - الكرة', 'الأشعة والإزاحة', 'الدوران', 'المثلثات المتقايسة والمتشابهة', 'الإحصاء', 'الحساب المثلثي', 'المتتاليات', 'اللوغاريتمات'] },
+                    physics: { name: 'الفيزياء والكيمياء', icon: '🔬', lessons: ['الميكانيك - السرعة والحركة', 'الطاقة الحركية', 'الطاقة الكامنة', 'التفاعلات الكيميائية', 'قانون حفظ الكتلة', 'التركيب الكهربائي', 'القوة والحركة', 'الضوء والألوان', 'الطاقة الكهربائية', 'الكيمياء العضوية', 'الكيمياء التحليلية', 'الكيمياء الفيزيائية'] },
+                    svt: { name: 'علوم الحياة والأرض', icon: '🌱', lessons: ['الوراثة والمورثات', 'التكاثر عند الإنسان', 'الجهاز التناسلي', 'الصحة والوقاية', 'التطور', 'النظام البيئي', 'التلوث البيئي', 'التوازنات الطبيعية', 'الجيولوجيا', 'علم الحفريات', 'الخلايا والأنسجة', 'الوراثة والصفات'] },
+                    arabic: { name: 'اللغة العربية', icon: '📖', lessons: ['النقد الأدبي', 'الأدب المقارن', 'البلاغة التطبيقية', 'النحو التطبيقي', 'الصرف', 'علم الدلالة', 'الأسلوبية', 'الترجمة', 'الإملاء والترقيم', 'المكتبة والبحث', 'النحو: الإعراب المفصل', 'النحو: الجملة الاسمية والفعلية'] },
+                    islamic: { name: 'التربية الإسلامية', icon: '🕌', lessons: ['أصول العقيدة', 'الفقه المقارن', 'أصول الفقه', 'السيرة النبوية المتقدمة', 'علوم القرآن', 'علوم الحديث', 'المقاصد الشرعية', 'الاجتهاد والتقليد', 'المذاهب الفقهية', 'الحضارة الإسلامية', 'الفكر الإسلامي', 'المنهج الإسلامي في الحياة'] },
+                    social: { name: 'الاجتماعيات', icon: '🌍', lessons: ['تاريخ المغرب الوسيط', 'الجغرافيا البشرية', 'الاقتصاد المغربي', 'المجتمع المغربي', 'التنمية البشرية', 'العلاقات الدولية', 'المؤسسات السياسية', 'التربية المدنية', 'حقوق وواجبات المواطن', 'النظام السياسي المغربي', 'التنظيم الإداري', 'المالية العامة'] }
+                }
+            },
+            'باك-1': {
+                name: 'الأولى باكالوريا',
+                totalLessons: 108,
+                subjects: {
+                    math: { name: 'الرياضيات', icon: '📐', lessons: ['التحليل - الدوال العددية', 'النهايات', 'الاشتقاق', 'دراسة الدوال', 'المتتاليات العددية', 'الحساب المثلثي', 'الهندسة الفضائية', 'الهندسة التحليلية', 'المنطق والمجموعات', 'الإحصاء والاحتمالات', 'الدوال الأسية', 'الدوال اللوغاريتمية'] },
+                    physics: { name: 'الفيزياء', icon: '🔬', lessons: ['الميكانيك النيوتنية', 'الديناميكا', 'الستاتيكا', 'الطاقة الميكانيكية', 'الموجات الميكانيكية', 'الفيزياء النووية', 'الفيزياء الحديثة', 'الكهرباء', 'المغناطيسية', 'البصريات', 'الديناميكا الحرارية', 'الموجات الكهرومغناطيسية'] },
+                    chemistry: { name: 'الكيمياء', icon: '⚗️', lessons: ['بنية الذرة', 'الجدول الدوري', 'الروابط الكيميائية', 'الحسابات الكيميائية', 'المحاليل', 'سرعة التفاعلات', 'الاتزان الكيميائي', 'الكيمياء العضوية', 'الكيمياء التحليلية', 'الكيمياء الحرارية', 'الكيمياء الكهربائية', 'الكيمياء النووية'] },
+                    svt: { name: 'علوم الحياة والأرض', icon: '🌱', lessons: ['الخلية الحية', 'التغذية عند الحيوان', 'التكاثر', 'المناعة', 'التنوع البيولوجي', 'علم البيئة', 'الجيولوجيا البنائية', 'الصخور المتحولة', 'الدينامية الداخلية للكرة الأرضية', 'الدينامية الخارجية', 'علم الأحافير', 'التطور'] },
+                    philosophy: { name: 'الفلسفة', icon: '🤔', lessons: ['الفلسفة - مفهوم ومنهج', 'الطبيعة والثقافة', 'الشخص', 'الغير', 'الحق والعدالة', 'الحرية', 'الواجب', 'السعادة', 'المجتمع', 'الدولة', 'الفلسفة والعلوم', 'الفلسفة والفن'] },
+                    arabic: { name: 'اللغة العربية', icon: '📖', lessons: ['النقد الأدبي الحديث', 'الأدب المغربي', 'الأدب العربي المعاصر', 'النحو المتقدم', 'البلاغة الجديدة', 'المدارس الأدبية', 'التحليل النصي المتقدم', 'النقد الثقافي', 'الأدب المقارن', 'الكتابة الإبداعية', 'المناهج النقدية', 'الأدب والهوية'] },
+                    french: { name: 'الفرنسية', icon: '🇫🇷', lessons: ['La dissertation', 'Le commentaire composé', 'L\'écriture d\'invention', 'Les mouvements littéraires', 'L\'analyse textuelle', 'La littérature française', 'La grammaire avancée', 'La conjugaison', 'L\'expression écrite', 'La compréhension écrite', 'L\'oral', 'La culture générale'] },
+                    english: { name: 'الإنجليزية', icon: '🇬🇧', lessons: ['Advanced Grammar', 'Essay Writing', 'Text Analysis', 'British Literature', 'American Literature', 'Listening Comprehension', 'Speaking Skills', 'Academic Writing', 'Vocabulary Building', 'Reading Comprehension', 'Critical Thinking', 'Research Skills'] },
+                    islamic: { name: 'التربية الإسلامية', icon: '🕌', lessons: ['التوحيد والألوهية', 'النبوة والرسالة', 'الوحي والقرآن', 'السنة النبوية', 'الفقه الأكبر', 'أصول الدين', 'العقيدة الإسلامية', 'الفلسفة الإسلامية', 'الفكر الإسلامي', 'المقاصد الشرعية', 'الاجتهاد والتجديد', 'الحضارة الإسلامية'] }
+                }
+            },
+            'باك-2': {
+                name: 'الثانية باكالوريا',
+                totalLessons: 108,
+                subjects: {
+                    math: { name: 'الرياضيات', icon: '📐', lessons: ['التكامل', 'المعادلات التفاضلية', 'الأعداد العقدية', 'الدوال الأسية واللوغاريتمية', 'الهندسة الفضائية المتقدمة', 'الجداء السلمي والشعاعي', 'الاحتمالات المتقدمة', 'المتتاليات العددية المتقدمة', 'الدوال الأصلية', 'الإحصاء التطبيقي', 'التحليل المركب', 'الهندسة التفاضلية'] },
+                    physics: { name: 'الفيزياء', icon: '🔬', lessons: ['الفيزياء الكمية', 'النسبية', 'الديناميكا الحرارية', 'الكهرومغناطيسية', 'البصريات الموجية', 'الفيزياء الإحصائية', 'فيزياء الجوامد', 'فيزياء البلازما', 'الفيزياء الفلكية', 'الفيزياء الطبية', 'الفيزياء النووية', 'الفيزياء الحيوية'] },
+                    chemistry: { name: 'الكيمياء', icon: '⚗️', lessons: ['الكيمياء العضوية المتقدمة', 'الكيمياء الفيزيائية المتقدمة', 'كيمياء البوليمرات', 'كيمياء المواد', 'الكيمياء الحيوية', 'الكيمياء البيئية', 'الكيمياء الطبية', 'كيمياء الكم', 'الكيمياء التحليلية المتقدمة', 'التفاعلات الكيميائية المتقدمة', 'كيمياء السطوح', 'الكيمياء الضوئية'] },
+                    svt: { name: 'علوم الحياة والأرض', icon: '🌱', lessons: ['البيولوجيا الجزيئية', 'علم الوراثة المتقدم', 'علم الأحياء الدقيقة', 'علم المناعة المتقدم', 'علم البيئة المتقدم', 'علم الأحياء التطوري', 'علم الأحياء التنموي', 'علم النبات المتقدم', 'علم الحيوان المتقدم', 'الجيولوجيا المتقدمة', 'علم الأحافير المتقدم', 'البيولوجيا البحرية'] },
+                    philosophy: { name: 'الفلسفة', icon: '🤔', lessons: ['الوعي واللاوعي', 'النظرية والتجربة', 'الحقيقة', 'الرغبة', 'الفن', 'التقنية والعلم', 'التاريخ', 'العنف', 'منهجية الكتابة الفلسفية', 'التحضير للامتحان', 'الفلسفة والدين', 'الفلسفة والأخلاق'] },
+                    arabic: { name: 'اللغة العربية', icon: '📖', lessons: ['النقد الأدبي المعاصر', 'الأدب العربي الحديث', 'الشعر العربي المعاصر', 'القصة والرواية', 'المسرح العربي', 'النقد الثقافي', 'الأدب النسائي', 'الأدب المقاوم', 'الأدب الرقمي', 'الترجمة الأدبية', 'الإبداع الأدبي', 'النقد ما بعد الكولونيالي'] },
+                    french: { name: 'الفرنسية', icon: '🇫🇷', lessons: ['La dissertation philosophique', 'Le commentaire littéraire', 'L\'analyse textuelle approfondie', 'La littérature comparée', 'La stylistique', 'La poésie moderne', 'Le théâtre contemporain', 'Le roman du XXe siècle', 'La nouvelle', 'La critique littéraire', 'L\'argumentation', 'La préparation aux examens'] },
+                    english: { name: 'الإنجليزية', icon: '🇬🇧', lessons: ['Advanced Essay Writing', 'Literary Analysis', 'Shakespeare Studies', 'Modern Literature', 'Post-colonial Literature', 'Academic Research', 'Debating Skills', 'Presentation Skills', 'Advanced Vocabulary', 'Translation Skills', 'Exam Preparation', 'University Level Writing'] },
+                    islamic: { name: 'التربية الإسلامية', icon: '🕌', lessons: ['الفقه المقارن المتقدم', 'أصول الفقه المتقدم', 'علوم القرآن المتقدمة', 'علوم الحديث المتقدمة', 'المقاصد الشرعية المتقدمة', 'الفكر الإسلامي المعاصر', 'الاجتهاد والتجديد', 'الفقه السياسي', 'الفقه الاقتصادي', 'الفقه الاجتماعي', 'قضايا المرأة في الإسلام', 'الحوار الحضاري'] }
+                }
+            }
+        };
+
+        // Global Variables
+        let currentLevel = 'اعدادي-1';
+        let completedLessons = new Set();
+        let bookmarkedLessons = new Set();
+        let lessonNotes = {};
+        let pdfLinks = {...HARDCODED_PDF_LINKS};
+        
+        // استخدام روابط الفروض المحددة في الكود
+        let examLinks = JSON.parse(JSON.stringify(HARDCODED_EXAM_LINKS));
+
+        // Initialize
+        function init() {
+            renderLevels();
+            loadUserData();
+            updateStats();
+            renderExamLevels();
+            renderExamsForLevel(currentLevel);
+        }
+
+        // Render Levels
+        function renderLevels() {
+            const container = document.getElementById('levelSelector');
+            container.innerHTML = '';
+            
+            Object.keys(educationalData).forEach(levelKey => {
+                const level = educationalData[levelKey];
+                const card = document.createElement('div');
+                card.className = 'level-card';
+                if (levelKey === currentLevel) card.classList.add('active');
+                card.innerHTML = `
+                    <h3>${level.name}</h3>
+                    <p>${level.totalLessons} درس - ${Object.keys(level.subjects).length} مادة</p>
+                `;
+                card.onclick = () => selectLevel(levelKey);
+                container.appendChild(card);
+            });
+        }
+
+        // Select Level
+        function selectLevel(levelKey) {
+            currentLevel = levelKey;
+            renderLevels();
+            renderSubjects();
+            renderPDFs();
+            showSection('subjects');
+        }
+
+        // Render Subjects
+        function renderSubjects() {
+            const container = document.getElementById('subjectsContainer');
+            container.innerHTML = '';
+            
+            const level = educationalData[currentLevel];
+            Object.keys(level.subjects).forEach(subjectKey => {
+                const subject = level.subjects[subjectKey];
+                const progress = calculateProgress(currentLevel, subjectKey);
+                
+                const card = document.createElement('div');
+                card.className = 'subject-card';
+                card.innerHTML = `
+                    <span class="subject-icon">${subject.icon}</span>
+                    <div class="subject-title">${subject.name}</div>
+                    <div class="subject-lessons">${subject.lessons.length} درس متوفر</div>
+                    <div class="subject-progress">
+                        <div class="subject-progress-bar" style="width: ${progress}%"></div>
+                    </div>
+                    <div style="margin-top: 12px; color: var(--success); font-weight: 700; font-size: 1.1em;">
+                        ${progress.toFixed(0)}% مكتمل
+                    </div>
+                `;
+                card.onclick = () => showLessons(currentLevel, subjectKey);
+                container.appendChild(card);
+            });
+        }
+
+        // Render PDFs
+        function renderPDFs() {
+            const container = document.getElementById('pdfContainer');
+            container.innerHTML = '';
+            
+            const level = educationalData[currentLevel];
+            
+            Object.keys(level.subjects).forEach(subjectKey => {
+                const subject = level.subjects[subjectKey];
+                
+                const section = document.createElement('div');
+                section.className = 'pdf-section';
+                section.innerHTML = `
+                    <h3>📚 ${subject.icon} ${subject.name}</h3>
+                    <div class="pdf-list" id="pdf-${subjectKey}"></div>
+                `;
+                
+                container.appendChild(section);
+                
+                const pdfList = document.getElementById(`pdf-${subjectKey}`);
+                subject.lessons.forEach((lesson, index) => {
+                    const key = `${currentLevel}-${subjectKey}-${index}`;
+                    const hasLink = pdfLinks[key];
+                    
+                    const pdfItem = document.createElement('div');
+                    pdfItem.className = 'pdf-item';
+                    pdfItem.innerHTML = `
+                        <div class="pdf-icon">📄</div>
+                        <div class="pdf-info">
+                            <div class="pdf-title">الدرس ${index + 1}: ${lesson}</div>
+                            <div class="pdf-link">${hasLink ? pdfLinks[key] : 'لا يوجد رابط بعد'}</div>
+                        </div>
+                        ${hasLink ? `
+                            <a href="${pdfLinks[key]}" target="_blank" class="pdf-download-btn">
+                                📥 تحميل PDF
+                            </a>
+                        ` : ''}
+                    `;
+                    pdfList.appendChild(pdfItem);
+                });
+            });
+        }
+
+        // Get Download Button
+        function getDownloadButton(level, subjectKey, lessonIndex) {
+            const key = `${level}-${subjectKey}-${lessonIndex}`;
+            const hasLink = pdfLinks[key];
+            
+            if (hasLink) {
+                return `<button class="lesson-download-btn" onclick="event.stopPropagation(); downloadLesson('${key}')">📥 تحميل PDF</button>`;
+            }
+            return '';
+        }
+
+        // Download Lesson
+        function downloadLesson(key) {
+            const url = pdfLinks[key];
+            if (url) {
+                window.open(url, '_blank');
+                alert('📥 جاري تحميل الملف...');
+            } else {
+                alert('⚠️ لا يوجد رابط تحميل لهذا الدرس');
+            }
+        }
+
+        // Calculate Progress
+        function calculateProgress(level, subject) {
+            const lessons = educationalData[level].subjects[subject].lessons;
+            let completed = 0;
+            lessons.forEach((_, index) => {
+                if (completedLessons.has(`${level}-${subject}-${index}`)) {
+                    completed++;
+                }
+            });
+            return lessons.length > 0 ? (completed / lessons.length) * 100 : 0;
+        }
+
+        // Show Lessons
+        function showLessons(level, subjectKey) {
+            const subject = educationalData[level].subjects[subjectKey];
+            let content = `
+                <h2 style="color: var(--primary); font-size: 2.2em;">${subject.icon} ${subject.name}</h2>
+                <p style="color: #666; margin-bottom: 25px; font-size: 1.1em;">المستوى: ${educationalData[level].name}</p>
+                <div style="background: #f8f9ff; padding: 35px; border-radius: 20px;">
+            `;
+            
+            subject.lessons.forEach((lesson, index) => {
+                const lessonKey = `${level}-${subjectKey}-${index}`;
+                const status = completedLessons.has(lessonKey) ? 'completed' : 'not-started';
+                const statusText = status === 'completed' ? 'مكتمل ✓' : 'لم يبدأ';
+                const isBookmarked = bookmarkedLessons.has(lessonKey);
+                const downloadBtn = getDownloadButton(level, subjectKey, index);
+                
+                content += `
+                    <div class="lesson-item" onclick="openLesson('${level}', '${subjectKey}', ${index})">
+                        <div class="lesson-number">${index + 1}</div>
+                        <div class="lesson-content">
+                            <div class="lesson-title">${lesson}</div>
+                            <div class="lesson-meta">الدرس ${index + 1} من ${subject.lessons.length}</div>
+                        </div>
+                        <div style="display: flex; gap: 10px;">
+                            ${downloadBtn}
+                            <button class="bookmark-btn ${isBookmarked ? 'bookmarked' : ''}" 
+                                    onclick="event.stopPropagation(); toggleBookmark('${lessonKey}', '${lesson}', '${subject.name}')">
+                                ${isBookmarked ? '⭐ محفوظ' : '☆ حفظ'}
+                            </button>
+                        </div>
+                        <span class="lesson-status ${status}">${statusText}</span>
+                    </div>
+                `;
+            });
+            
+            content += '</div>';
+            
+            document.getElementById('lessonContent').innerHTML = content;
+            document.getElementById('lessonModal').classList.add('active');
+        }
+
+        // Open Lesson
+        function openLesson(level, subjectKey, lessonIndex) {
+            const subject = educationalData[level].subjects[subjectKey];
+            const lesson = subject.lessons[lessonIndex];
+            const lessonKey = `${level}-${subjectKey}-${lessonIndex}`;
+            const hasPDF = pdfLinks[lessonKey];
+            const savedNote = lessonNotes[lessonKey] || '';
+            
+            let content = `
+                <h2 style="color: var(--primary); margin-bottom: 25px; font-size: 2em;">${lesson}</h2>
+                <p style="color: #666; margin-bottom: 35px; font-size: 1.1em;">
+                    ${subject.name} - ${educationalData[level].name}
+                </p>
+                
+                ${hasPDF ? `
+                    <div class="pdf-section">
+                        <h3>📥 تحميل ملخص الدرس</h3>
+                        <a href="${pdfLinks[lessonKey]}" target="_blank" class="pdf-download-btn">
+                            📄 تحميل PDF
+                        </a>
+                    </div>
+                ` : ''}
+                
+                <div class="notes-section">
+                    <h3 style="color: var(--accent); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        📝 ملاحظاتي الخاصة
+                    </h3>
+                    <textarea class="notes-textarea" id="lessonNoteInput" placeholder="اكتب ملاحظاتك هنا...">${savedNote}</textarea>
+                    <button class="btn btn-primary" style="margin-top: 15px;" onclick="saveNote('${lessonKey}')">
+                        💾 حفظ الملاحظة
+                    </button>
+                </div>
+                
+                <div style="margin-top: 35px; background: #f8f9ff; padding: 30px; border-radius: 15px; border-right: 5px solid var(--primary);">
+                    <h3 style="color: var(--dark); margin-bottom: 20px; font-size: 1.5em;">📚 محتوى الدرس</h3>
+                    <p style="color: #666; line-height: 1.8; font-size: 1.05em;">
+                        هذا الدرس يغطي المفاهيم الأساسية في موضوع "${lesson}". 
+                        يتضمن شرحاً تفصيلياً، أمثلة توضيحية، وتمارين تطبيقية لتعزيز الفهم.
+                    </p>
+                </div>
+                
+                <div style="margin-top: 25px; text-align: center;">
+                    <button class="btn btn-primary" onclick="markAsComplete('${lessonKey}')">
+                        ✓ تم إكمال الدرس
+                    </button>
+                </div>
+            `;
+            
+            document.getElementById('lessonContent').innerHTML = content;
+        }
+
+        // Toggle Bookmark
+        function toggleBookmark(lessonKey, lessonName, subjectName) {
+            if (bookmarkedLessons.has(lessonKey)) {
+                bookmarkedLessons.delete(lessonKey);
+            } else {
+                bookmarkedLessons.add(lessonKey);
+            }
+            saveUserData();
+            updateStats();
+            renderBookmarks();
+        }
+
+        // Save Note
+        function saveNote(lessonKey) {
+            const noteText = document.getElementById('lessonNoteInput').value;
+            lessonNotes[lessonKey] = noteText;
+            saveUserData();
+            alert('✅ تم حفظ الملاحظة بنجاح!');
+            renderNotes();
+        }
+
+        // Render Bookmarks
+        function renderBookmarks() {
+            const container = document.getElementById('bookmarksContainer');
+            
+            if (bookmarkedLessons.size === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 80px 20px; color: #666;">
+                        <div style="font-size: 100px; margin-bottom: 20px;">⭐</div>
+                        <h3 style="font-size: 2em; margin-bottom: 15px;">لا توجد دروس محفوظة</h3>
+                        <p style="font-size: 1.1em;">احفظ دروسك المفضلة للوصول السريع إليها</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = '<div class="subjects-grid"></div>';
+            const grid = container.querySelector('.subjects-grid');
+            
+            bookmarkedLessons.forEach(lessonKey => {
+                const [level, subject, index] = lessonKey.split('-');
+                const subjectData = educationalData[level].subjects[subject];
+                const lesson = subjectData.lessons[index];
+                
+                const card = document.createElement('div');
+                card.className = 'subject-card';
+                card.innerHTML = `
+                    <span class="subject-icon">${subjectData.icon}</span>
+                    <div class="subject-title">${lesson}</div>
+                    <div class="subject-lessons">${subjectData.name} - ${educationalData[level].name}</div>
+                    <button class="bookmark-btn bookmarked" onclick="event.stopPropagation(); toggleBookmark('${lessonKey}')">
+                        ⭐ إزالة من المفضلة
+                    </button>
+                `;
+                card.onclick = () => openLesson(level, subject, parseInt(index));
+                grid.appendChild(card);
+            });
+        }
+
+        // Render Notes
+        function renderNotes() {
+            const container = document.getElementById('notesContainer');
+            const notesKeys = Object.keys(lessonNotes).filter(key => lessonNotes[key].trim());
+            
+            if (notesKeys.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 80px 20px; color: #666;">
+                        <div style="font-size: 100px; margin-bottom: 20px;">📝</div>
+                        <h3 style="font-size: 2em; margin-bottom: 15px;">لا توجد ملاحظات</h3>
+                        <p style="font-size: 1.1em;">ابدأ بكتابة ملاحظاتك للدروس</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = '';
+            
+            notesKeys.forEach(lessonKey => {
+                const [level, subject, index] = lessonKey.split('-');
+                const subjectData = educationalData[level].subjects[subject];
+                const lesson = subjectData.lessons[index];
+                
+                const noteCard = document.createElement('div');
+                noteCard.className = 'notes-section';
+                noteCard.style.marginBottom = '20px';
+                noteCard.innerHTML = `
+                    <h3 style="color: var(--primary); margin-bottom: 10px;">
+                        ${subjectData.icon} ${lesson}
+                    </h3>
+                    <p style="color: #777; font-size: 0.9em; margin-bottom: 15px;">
+                        ${subjectData.name} - ${educationalData[level].name}
+                    </p>
+                    <div style="background: white; padding: 20px; border-radius: 10px; border: 2px solid #e0e0e0;">
+                        <p style="white-space: pre-wrap; line-height: 1.6; color: var(--dark);">${lessonNotes[lessonKey]}</p>
+                    </div>
+                `;
+                container.appendChild(noteCard);
+            });
+        }
+
+        // Mark as Complete
+        function markAsComplete(lessonKey) {
+            completedLessons.add(lessonKey);
+            saveUserData();
+            updateStats();
+            alert('✅ تم تسجيل إكمال الدرس بنجاح!');
+            closeModal();
+            renderSubjects();
+        }
+
+        // Update Stats
+        function updateStats() {
+            let totalLessons = 0;
+            Object.values(educationalData).forEach(level => {
+                totalLessons += level.totalLessons;
+            });
+            
+            document.getElementById('totalLessons').textContent = totalLessons;
+            document.getElementById('completedLessons').textContent = completedLessons.size;
+            document.getElementById('bookmarksCount').textContent = bookmarkedLessons.size;
+            document.getElementById('totalPoints').textContent = completedLessons.size * 10;
+        }
+
+        // Search Content
+        function searchContent() {
+            const query = document.getElementById('searchBox').value.toLowerCase();
+            if (!query) {
+                renderSubjects();
+                return;
+            }
+            
+            const container = document.getElementById('subjectsContainer');
+            container.innerHTML = '';
+            
+            const level = educationalData[currentLevel];
+            let found = false;
+            
+            Object.keys(level.subjects).forEach(subjectKey => {
+                const subject = level.subjects[subjectKey];
+                const matchingLessons = subject.lessons.filter(lesson => 
+                    lesson.toLowerCase().includes(query)
+                );
+                
+                if (matchingLessons.length > 0 || subject.name.toLowerCase().includes(query)) {
+                    found = true;
+                    const progress = calculateProgress(currentLevel, subjectKey);
+                    
+                    const card = document.createElement('div');
+                    card.className = 'subject-card';
+                    card.innerHTML = `
+                        <span class="subject-icon">${subject.icon}</span>
+                        <div class="subject-title">${subject.name}</div>
+                        <div class="subject-lessons">${matchingLessons.length} درس متطابق</div>
+                        <div class="subject-progress">
+                            <div class="subject-progress-bar" style="width: ${progress}%"></div>
+                        </div>
+                    `;
+                    card.onclick = () => showLessons(currentLevel, subjectKey);
+                    container.appendChild(card);
+                }
+            });
+            
+            if (!found) {
+                container.innerHTML = '<p style="text-align: center; color: #666; font-size: 1.2em; padding: 40px;">❌ لم يتم العثور على نتائج</p>';
+            }
+        }
+
+        // Show Section
+        function showSection(sectionId) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+            
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => {
+                if (tab.textContent.includes(getSectionName(sectionId))) {
+                    tab.classList.add('active');
+                }
+            });
+            
+            if (sectionId === 'pdfs') {
+                renderPDFs();
+            } else if (sectionId === 'bookmarks') {
+                renderBookmarks();
+            } else if (sectionId === 'notes') {
+                renderNotes();
+            } else if (sectionId === 'exams') {
+                renderExamLevels();
+                renderExamsForLevel(currentLevel);
+            }
+        }
+
+        function getSectionName(sectionId) {
+            const names = {
+                'home': 'الرئيسية',
+                'subjects': 'المواد',
+                'pdfs': 'PDF',
+                'exams': 'الفروض',
+                'ai-assistant': 'المساعد',
+                'bookmarks': 'المفضلة',
+                'notes': 'ملاحظاتي',
+                'progress': 'تقدمي'
+            };
+            return names[sectionId] || '';
+        }
+
+        // Close Modal
+        function closeModal() {
+            document.getElementById('lessonModal').classList.remove('active');
+        }
+
+        // Theme Toggle
+        function toggleTheme() {
+            document.body.style.filter = document.body.style.filter === 'invert(1) hue-rotate(180deg)' ? '' : 'invert(1) hue-rotate(180deg)';
+        }
+
+        // Save/Load User Data
+        function saveUserData() {
+            localStorage.setItem('completedLessons', JSON.stringify([...completedLessons]));
+            localStorage.setItem('bookmarkedLessons', JSON.stringify([...bookmarkedLessons]));
+            localStorage.setItem('lessonNotes', JSON.stringify(lessonNotes));
+        }
+
+        function loadUserData() {
+            const savedCompleted = localStorage.getItem('completedLessons');
+            if (savedCompleted) {
+                completedLessons = new Set(JSON.parse(savedCompleted));
+            }
+            
+            const savedBookmarks = localStorage.getItem('bookmarkedLessons');
+            if (savedBookmarks) {
+                bookmarkedLessons = new Set(JSON.parse(savedBookmarks));
+            }
+            
+            const savedNotes = localStorage.getItem('lessonNotes');
+            if (savedNotes) {
+                lessonNotes = JSON.parse(savedNotes);
+            }
+        }
+        
+        // ========== قسم الفروض (مع روابط محددة في الكود) ==========
+        function renderExamLevels() {
+            const container = document.getElementById('examLevelSelector');
+            if (!container) return;
+            container.innerHTML = '';
+            Object.keys(educationalData).forEach(levelKey => {
+                const btn = document.createElement('button');
+                btn.className = `nav-tab ${levelKey === currentLevel ? 'active' : ''}`;
+                btn.innerText = educationalData[levelKey].name;
+                btn.style.margin = '0';
+                btn.onclick = (e) => {
+                    document.querySelectorAll('#examLevelSelector .nav-tab').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    renderExamsForLevel(levelKey);
+                };
+                container.appendChild(btn);
+            });
+        }
+
+        function renderExamsForLevel(levelKey) {
+            const container = document.getElementById('examContentContainer');
+            if (!container) return;
+            const level = educationalData[levelKey];
+            let html = `<h3 style="color: #d63031; margin-bottom:25px;">📌 فروض وامتحانات: ${level.name}</h3>`;
+            
+            Object.keys(level.subjects).forEach(subKey => {
+                const subject = level.subjects[subKey];
+                const examKey = `${levelKey}-${subKey}`;
+                const examLink = examLinks[examKey] || 'لا يوجد رابط بعد';
+                
+                html += `<div class="exam-card" style="flex-direction: column; align-items: flex-start;">
+                            <div style="display:flex; align-items:center; gap:20px; width:100%;">
+                                <span style="font-size:3em;">${subject.icon}</span>
+                                <div class="exam-info" style="flex:1;">
+                                    <h4>${subject.name}</h4>
+                                    <p style="color:#636e72;">رابط الفرض:</p>
+                                    <div class="exam-link-display">
+                                        ${examLink !== 'لا يوجد رابط بعد' ? `<a href="${examLink}" target="_blank">${examLink}</a>` : examLink}
+                                    </div>
+                                </div>
+                                ${examLink !== 'لا يوجد رابط بعد' ? `
+                                    <a href="${examLink}" target="_blank" class="btn-exam" style="text-decoration: none;">
+                                        📋 عرض الفرض
+                                    </a>
+                                ` : ''}
+                            </div>
+                        </div>`;
+            });
+            container.innerHTML = html;
+        }
+        
+        // ========== الذكاء الاصطناعي المساعد ==========
+        function sendAIMessage() {
+            const input = document.getElementById('aiChatInput');
+            const query = input.value.trim();
+            if (query === '') return;
+            
+            const chatWindow = document.getElementById('chatWindow');
+            
+            const userMsgDiv = document.createElement('div');
+            userMsgDiv.className = 'chat-message';
+            userMsgDiv.style.justifyContent = 'flex-end';
+            userMsgDiv.innerHTML = `<div class="user-message">${escapeHTML(query)}</div>`;
+            chatWindow.appendChild(userMsgDiv);
+            
+            const answer = generateSmartAnswer(query);
+            
+            const aiMsgDiv = document.createElement('div');
+            aiMsgDiv.className = 'chat-message';
+            aiMsgDiv.innerHTML = `<div style="background: #8b5cf6; width:45px; height:45px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-size:1.7em; flex-shrink:0;">🤖</div>
+                                  <div class="ai-message">${escapeHTML(answer)}</div>`;
+            chatWindow.appendChild(aiMsgDiv);
+            
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+            input.value = '';
+        }
+
+        function generateSmartAnswer(q) {
+            const lower = q.toLowerCase();
+            if (lower.includes('رياضيات') || lower.includes('math') || lower.includes('معادلة')) {
+                return "لحل أي تمرين في الرياضيات، اتبع الخطوات: 1) اقرأ التمرين جيداً وحدد المعطيات. 2) استخرج المطلوب. 3) طبق القاعدة المناسبة (نظرية، قانون). 4) تحقق من النتيجة. مثال: إذا كان التمرين يتعلق بالمعادلات من الدرجة الأولى، انقل المجاهيل طرفاً والأعداد طرفاً مع تغيير الإشارة.";
+            }
+            if (lower.includes('فيزياء') || lower.includes('physics')) {
+                return "في الفيزياء، قوانين أوم: U = R × I حيث U التوتر، R المقاومة، I التيار. لتطبيقه: حدد قيمة المقاومة، قم بقياس التوتر، ثم احسب التيار أو العكس.";
+            }
+            if (lower.includes('فلسفة') || lower.includes('philosophie')) {
+                return "لكتابة مقالة فلسفية جيدة: 1) حدد الإشكالية. 2) قدم الأطروحة الأولى مع الحجج. 3) ناقش الأطروحة الثانية. 4) ركب أو انتقد وصولاً لتركيب شخصي. 5) استنتج.";
+            }
+            if (lower.includes('إعراب') || lower.includes('نحو')) {
+                return "في الإعراب: حدد نوع الكلمة (اسم، فعل، حرف)، ثم موقعها في الجملة (مبتدأ، خبر، فاعل، مفعول به...). مثال: 'المعلمُ نشيطٌ' المُعَلِّمُ: مبتدأ مرفوع وعلامة رفعه الضمة، نَشِيطٌ: خبر مرفوع بالضمة.";
+            }
+            if (lower.includes('فرنسية') || lower.includes('français')) {
+                return "Pour rédiger une dissertation: 1) Analysez le sujet. 2) Cherchez des idées. 3) Construisez un plan (2 ou 3 parties). 4) Rédigez introduction, développement, conclusion. Utilisez des connecteurs logiques.";
+            }
+            if (lower.includes('مراجعة') || lower.includes('كيف أدرس')) {
+                return "أنصحك ب: 1) تقسيم الوقت: 25 دقيقة تركيز + 5 دقائق راحة. 2) تلخيص الدروس بكلماتك. 3) حل تمارين متنوعة. 4) مراجعة الأخطاء السابقة. 5) تعليم الآخرين يثبت المعلومة.";
+            }
+            if (lower.includes('سلام') || lower.includes('مرحبا')) {
+                return "وعليكم السلام! كيف يمكنني مساعدتك اليوم في الدراسة؟ 😊";
+            }
+            return "شكراً على سؤالك. أنا هنا لمساعدتك! يمكنك أن تطلب مني شرح أي درس، أو حل تمرين، أو اقتراح خطة مراجعة. هل يمكنك توضيح أكثر؟";
+        }
+
+        function escapeHTML(unsafe) {
+            return unsafe.replace(/[&<>"]/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                if (m === '"') return '&quot;';
+                return m;
+            });
+        }
+
+        function clearChat() {
+            const chatWindow = document.getElementById('chatWindow');
+            chatWindow.innerHTML = `<div class="chat-message">
+                                        <div style="background: #8b5cf6; width:45px; height:45px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-size:1.7em; flex-shrink:0;">🤖</div>
+                                        <div class="ai-message">
+                                            مرحباً! أنا مساعدك الذكي للتعليم المغربي. يمكنني:<br>
+                                            • شرح أي درس أو فكرة<br>
+                                            • مساعدتك في حل تمارين (رياضيات، فيزياء، ...)<br>
+                                            • اقتراح منهجية المراجعة<br>
+                                            • تلخيص دروس<br>
+                                            فقط اكتب سؤالك بالعربية أو الفرنسية أو الإنجليزية.
+                                        </div>
+                                    </div>`;
+        }
+
+        // Initialize on load
+        window.onload = init;
+    </script>
+</body>
+</html>
